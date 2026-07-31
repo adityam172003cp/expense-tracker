@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+pymysql
+alembic
+python-dotenv
+pydantic
+groq
+apscheduler
+passlib[bcrypt]
+python-jose[cryptography]
+pytest
+httpx
