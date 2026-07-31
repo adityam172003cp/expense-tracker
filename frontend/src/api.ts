@@ -18,6 +18,7 @@ export interface Summary { total_budget: number; total_spent: number; total_rema
 export interface Sector { id: number; name: string; monthly_budget: number; color_tag?: string; current_month_spent: number; remaining_budget: number; alert_level: AlertLevel; percent_used?: number }
 interface DashboardSector { sector_id: number; name: string; monthly_budget: number; color_tag?: string; spent: number; remaining: number; alert_level: AlertLevel; percent_used?: number }
 export interface Expense { id: number; sector_id: number; amount: number; note?: string; date: string; created_at: string }
+export interface User { id: number; email: string; full_name?: string | null; created_at: string }
 export interface TrendPoint { date: string; actual_spend: number; ideal_spend: number }
 export interface BreakdownItem { sector_id: number; name: string; spent: number; share_percent: number }
 export interface BudgetVsActualItem { sector_id: number; name: string; budget: number; spent: number; percent_used: number }
@@ -30,6 +31,7 @@ export interface AIAnalysis { overview: string; sector_breakdown: AIAnalysisSect
 export const auth = {
   login: (email: string, password: string) => post<{ access_token: string }>('/auth/login', { email, password }),
   register: (email: string, password: string, full_name: string) => post('/auth/register', { email, password, full_name }),
+  me: () => request<User>('/auth/me'),
 }
 export const dashboard = {
   summary: () => request<Summary>('/dashboard/summary'),
